@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>崔畅（Cera Cui）作品集</title>
+    <style>
+        /* ===== 全局重置 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f6f8fa;
+            color: #1e293b;
+            line-height: 1.6;
+            padding: 30px 20px 60px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ===== 滚动条美化 ===== */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 8px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* ===== 头部 ===== */
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 30px 20px 40px;
+            border-bottom: 2px solid #e9edf2;
+            margin-bottom: 40px;
+        }
+
+        .avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background-color: #dce2eb;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 20px;
+            border: 4px solid #ffffff;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .header h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            color: #0b1a2f;
+            margin-bottom: 6px;
+        }
+
+        .header h1 span {
+            font-weight: 400;
+            color: #6b7a8f;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px 16px;
+            margin-top: 12px;
+        }
+
+        .tags span {
+            background: #ffffff;
+            border: 1px solid #dce2eb;
+            padding: 6px 22px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #2c3e50;
+            letter-spacing: 0.4px;
+            transition: all 0.2s;
+        }
+
+        .tags span:hover {
+            background: #0b1a2f;
+            color: #ffffff;
+            border-color: #0b1a2f;
+            transform: translateY(-1px);
+        }
+
+        /* ===== 区块标题 ===== */
+        .section-title {
+            font-size: 1.7rem;
+            font-weight: 600;
+            margin: 50px 0 24px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e9edf2;
+            color: #0b1a2f;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .emoji {
+            font-size: 1.6rem;
+        }
+
+        .section-title .count {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: #94a3b8;
+            margin-left: auto;
+            background: #f1f5f9;
+            padding: 2px 14px;
+            border-radius: 20px;
+        }
+
+        /* ===== 卡片网格 ===== */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 28px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            border: 1px solid #eef2f6;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.14);
+            border-color: #cbd5e1;
+        }
+
+        .card-cover {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background-color: #eef2f6;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            cursor: pointer;
+            position: relative;
+            transition: opacity 0.2s;
+        }
+
+        .card-cover:hover {
+            opacity: 0.92;
+        }
+
+        .card-cover .cover-placeholder {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #64748b;
+            backdrop-filter: blur(4px);
+        }
+
+        .card-body {
+            padding: 18px 20px 22px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-body h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+
+        .card-body h3 a {
+            text-decoration: none;
+            color: #0b1a2f;
+            transition: color 0.2s;
+        }
+
+        .card-body h3 a:hover {
+            color: #2563eb;
+        }
+
+        .card-body .meta {
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-bottom: 8px;
+        }
+
+        .card-body .desc {
+            font-size: 0.92rem;
+            color: #475569;
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .card-body .badge {
+            display: inline-block;
+            background: #f1f5f9;
+            padding: 2px 14px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            color: #475569;
+            margin-top: 12px;
+            align-self: flex-start;
+        }
+
+        /* ===== PDF预览弹窗 ===== */
+        .pdf-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(6px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .pdf-modal.active {
+            display: flex;
+        }
+
+        .pdf-modal-content {
+            background: #ffffff;
+            border-radius: 20px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .pdf-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            border-bottom: 1px solid #eef2f6;
+            flex-shrink: 0;
+        }
+
+        .pdf-modal-header span {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #0b1a2f;
+        }
+
+        .pdf-modal-close {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            line-height: 1;
+            cursor: pointer;
+            color: #94a3b8;
+            padding: 0 6px;
+            transition: color 0.2s;
+        }
+
+        .pdf-modal-close:hover {
+            color: #0b1a2f;
+        }
+
+        .pdf-modal-body {
+            flex: 1;
+            overflow: auto;
+            padding: 20px 24px 24px;
+            background: #f8fafc;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pdf-modal-body embed,
+        .pdf-modal-body object {
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .pdf-modal-body .pdf-fallback {
+            color: #94a3b8;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .pdf-modal-body .pdf-fallback a {
+            color: #2563eb;
+            text-decoration: underline;
+        }
+
+        .pdf-modal-body embed,
+        .pdf-modal-body object {
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* ===== 页脚 ===== */
+        .footer {
+            margin-top: 60px;
+            text-align: center;
+            color: #94a3b8;
+            border-top: 1px solid #e9edf2;
+            padding-top: 28px;
+            font-size: 0.85rem;
+        }
+
+        /* ===== 响应式 ===== */
+        @media (max-width: 640px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .section-title {
+                font-size: 1.3rem;
+            }
+            .pdf-modal {
+                padding: 12px;
+            }
+            .pdf-modal-body {
+                min-height: 300px;
+                padding: 12px;
+            }
+            .pdf-modal-body embed,
+            .pdf-modal-body object {
+                min-height: 350px;
+            }
+            .tags span {
+                font-size: 0.8rem;
+                padding: 4px 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- ============================================================ -->
+    <!-- 1. 头部：照片 + 大标题 + 关键词 -->
+    <!-- ============================================================ -->
+    <header class="header">
+        <div class="avatar" style="background-image: url('https://i.ibb.co/9Hg6CnR6/fd285f82d37b4285d391a11627eb4286.jpg');"></div>
+        <h1>崔畅（<span>Cera Cui</span>）作品集</h1>
+        <div class="tags">
+            <span>品牌宣传</span>
+            <span>自媒体运营</span>
+            <span>活动策划</span>
+            <span>公共关系</span>
+            <span>媒介传播</span>
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- 2. 公众号文章（9篇） -->
+    <!-- ============================================================ -->
+    <div class="section-title">
+        <span class="emoji">📝</span> 公众号文章
+        <span class="count">9 篇</span>
+    </div>
+    <div class="grid" id="articleGrid">
+       <!-- 文章卡片 1 -->
+        <div class="card card-article">
+            <a href="https://mp.weixin.qq.com/s/KAQpI4Oi6O1YIv09kPKpfg" target="_blank" class="card-cover" style="background-image: url('https://i.ibb.co/pTm37nL/image.jpg');">
+            </a>
+            <div class="card-body">
+                <h3><a href="https://mp.weixin.qq.com/s/KAQpI4Oi6O1YIv09kPKpfg" target="_blank">生物岛未来学者挑战营开营，11位未来学者开启创造之旅</a></h3>
+                <div class="meta">2025年7月 · 阅读约 6 分钟</div>
+                <span class="badge">活动报道</span>
+            </div>
+        </div>
+
+        <!-- 文章卡片 2 -->
+         <div class="card card-article">
+            <a href="https://mp.weixin.qq.com/s/Z16mUBvGcwx-Q_c3H1FmNg" target="_blank" class="card-cover" style="background-image: url('https://i.ibb.co/s98ZnLRZ/Q2-A7561-22076494.jpg');">
+            </a>
+            <div class="card-body">
+                <h3><a href="https://mp.weixin.qq.com/s/Z16mUBvGcwx-Q_c3H1FmNg" target="_blank">从“解题”到“出题”，这群少年在生物岛完成了一次科研“成人礼”</a></h3>
+                <div class="meta">2025年6月 · 阅读约 8 分钟</div>
+                <span class="badge">活动报道</span>
+            </div>
+        </div>
+
+        <!-- 文章卡片 3 -->
+         <div class="card card-article">
+            <a href="https://mp.weixin.qq.com/s/exK85BFhnu7RAaP2TggvPg?from=singlemessage&isappinstalled=0&scene=1&clicktime=1787469009&enterid=1787469009" target="_blank" class="card-cover" style="background-image: url('https://i.ibb.co/84PpHQ6t/11034563ca6d13e45c5a5264cbe0c54f.jpg');">
+            </a>
+            <div class="card-body">
+                <h3><a href="https://mp.weixin.qq.com/s/exK85BFhnu7RAaP2TggvPg?from=singlemessage&isappinstalled=0&scene=1&clicktime=1787469009&enterid=1787469009" target="_blank">2025 X-Camp少年科研挑战营：从零到一，开启你的无限可能</a></h3>
+                <div class="meta">2024年12月 · 阅读约 8 分钟</div>
+                <span class="badge">课程报名</span>
+            </div>
+        </div>
+
+        <!-- 文章卡片 4 -->
+         <div class="card card-article">
+            <a href="https://mp.weixin.qq.com/s/XmDi-Ji5B0DblUqteE7xWw" target="_blank" class="card-cover" style="background-image: url('https://i.ibb.co/kgy0xQ2C/ff07efc83304e776bd2278c06b2f9bd9.jpg');">
+            </a>
+            <div class="card-body">
+                <h3><a href="https://mp.weixin.qq.com/s/XmDi-Ji5B0DblUqteE7xWw" target="_blank">2026 X-Challenge颠覆性创新挑战营 · 夏季开放报名 | 勇做新世界的提问者</a></h3>
+                <div class="meta">2026年4月 · 阅读约 7 分钟</div>
+                <span class="badge">活动报名</span>
+            </div>
+        </div>
+
+        <!-- 文章卡片 5 -->
+         <div class="card card-article">
+            <a href="https://mp.weixin.qq.com/s/xOjtlY7h6cjdhyzJb-gong" target="_blank" class="card-cover" style="background-image: url('https://i.ibb.co/1tDssP0z/d2e1ec6417878a145fa6c7277e5ff555.jpg');">
+            </a>
+            <div class="card-body">
+                <h3><a href="https://mp.weixin.qq.com/s/xOjtlY7h6cjdhyzJb-gong" target="_blank">2019中国管理·全球论坛召开 共话“长期主义 价值共生”</a></h3>
+                <div class="meta">2019年11月 · 阅读约 5 分钟</div>
+                <span class="badge">论坛报道</span>
+            </div>
+        </div>
+
+        <!-- 文章卡片 6 -->
+        <div class="card card-article">
+            <a href="https://mp.weixin.qq.com/s/GlxVmvuJA8PxMHeyybJd8g?from=singlemessage&isappinstalled=0&scene=1&clicktime=1787471033&enterid=1787471033" target="_blank" class="card-cover" style="background-image: url('https://i.ibb.co/1YzQMddx/d3709c4f8866cee3806f68602d92449e.jpg');">
+            </a>
+            <div class="card-body">
+                <h3><a href="https://mp.weixin.qq.com/s/GlxVmvuJA8PxMHeyybJd8g?from=singlemessage&isappinstalled=0&scene=1&clicktime=1787471033&enterid=1787471033" target="_blank">与伟大时代同行 | C50+走进康恩贝</a></h3>
+                <div class="meta">2019年5月 · 阅读约 5 分钟</div>
+                <span class="badge">活动报道</span>
+            </div>
+        </div>
+
+        <!-- 文章卡片 7 -->
+         <div class="card card-article">
+            <a href="https://mp.weixin.qq.com/s/MDJ7xfRvrr-JwSK7KdPyWA" target="_blank" class="card-cover" style="background-image: url('https://i.ibb.co/hJygnb7B/172c8dcfd6f8a3de2050afda11cff633.jpg');">
+            </a>
+            <div class="card-body">
+                <h3><a href="https://mp.weixin.qq.com/s/MDJ7xfRvrr-JwSK7KdPyWA" target="_blank">深圳托育园都在吃的专属宝宝餐，我不许你不知道！</a></h3>
+                <div class="meta">2021年8月 · 阅读约 6 分钟</div>
+                <span class="badge">产品营销</span>
+            </div>
+        </div>
+
+        <!-- 文章卡片 8 -->
+         <div class="card card-article">
+            <a href="https://mp.weixin.qq.com/s/JOTkxnQj-IWTyTNS4ZtbXA" target="_blank" class="card-cover" style="background-image: url('https://i.ibb.co/4g0ZLd9H/4e4285df2b5589c5604db22236dc0573.jpg');">
+            </a>
+            <div class="card-body">
+                <h3><a href="https://mp.weixin.qq.com/s/JOTkxnQj-IWTyTNS4ZtbXA" target="_blank">《卡思佳·发展适宜性托育课程》新闻发布会圆满落幕</a></h3>
+                <div class="meta">2023年5月 · 阅读约 5 分钟</div>
+                <span class="badge">发布会报道</span>
+            </div>
+        </div>
+
+        <!-- 文章卡片 9 -->
+         <div class="card card-article">
+            <a href="https://mp.weixin.qq.com/s/ZWX3UpYHSNk_Cn7Kk-qa_w" target="_blank" class="card-cover" style="background-image: url('https://i.ibb.co/gbCNsKbr/391d00dd2cf537972285ef9ab1b0adb5.jpg');">
+            </a>
+            <div class="card-body">
+                <h3><a href="https://mp.weixin.qq.com/s/ZWX3UpYHSNk_Cn7Kk-qa_w" target="_blank">本年度，这可能是你最靠近「设计思维」的一次机会</a></h3>
+                <div class="meta">2017年7月 · 阅读约 7 分钟</div>
+                <span class="badge">活动宣传</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 3. 视频号视频（6个） -->
+    <!-- ============================================================ -->
+    <div class="section-title">
+        <span class="emoji">🎬</span> 视频号作品
+        <span class="count">6 个</span>
+    </div>
+    <div class="grid" id="videoGrid">
+        <!-- 视频卡片 1 -->
+        <div class="card card-video">
+            <a href="https://weixin.qq.com/sph/ATOFNgvIID" target="_blank" class="card-cover" style="background-image: url('https://i.ibb.co/svyG6MVW/Screen-Shot-2026-09-16-144135-805.jpg');">
+            </a>
+            <div class="card-body">
+                <h3><a href="https://weixin.qq.com/sph/ATOFNgvIID" target="_blank">未来学者挑战营：中学生进入真实科研实验室，会发生什么？</a></h3>
+                <div class="meta">2026年7月 · 时长 7:56</div>
+                <span class="badge">活动报道</span>
+            </div>
+        </div>
+
+        <!-- 视频卡片 2 -->
+         <div class="card card-video">
+            <a href="https://weixin.qq.com/sph/AgNU9XUIKr" target="_blank" class="card-cover" style="background-image: url('https://i.ibb.co/nMqVHLjQ/Screen-Shot-2026-09-16-153731-021.jpg');">
+            </a>
+            <div class="card-body">
+                <h3><a href="https://weixin.qq.com/sph/AgNU9XUIKr" target="_blank">少年科研挑战营：“涌现”与智能未来</a></h3>
+                <div class="meta">2025年1月 · 时长 4:23</div>
+                <span class="badge">活动报道</span>
+            </div>
+        </div>
+
+        <!-- 视频卡片 3 -->
+         <div class="card card-video">
+            <a href="https://weixin.qq.com/sph/AX8dtFuBUE" target="_blank" class="card-cover" style="background-image: url('https://i.ibb.co/WvxFDWQZ/Screen-Shot-2026-09-16-160536-290.jpg');">
+            </a>
+            <div class="card-body">
+                <h3><a href="https://weixin.qq.com/sph/AX8dtFuBUE" target="_blank">从MIT到零一，他为什么是学子口中的“好导师”？</a></h3>
+                <div class="meta">2024年11月 · 时长 12:13</div>
+                <span class="badge">人物专访</span>
+            </div>
+        </div>
+
+        <!-- 视频卡片 4 -->
+         <div class="card card-video">
+            <a href="https://weixin.qq.com/sph/AmbkqFhFsv" target="_blank" class="card-cover" style="background-image: url('https://i.ibb.co/xtXX7ZRJ/Screen-Shot-2026-09-18-122049-889.jpg');">
+            </a>
+            <div class="card-body">
+                <h3><a href="https://weixin.qq.com/sph/AmbkqFhFsv" target="_blank">2024世界顶尖科学家科学T大会精彩回顾</a></h3>
+                <div class="meta">2024年10月 · 时长 1:56</div>
+                <span class="badge">活动报道</span>
+            </div>
+        </div>
+
+        <!-- 视频卡片 5 -->
+        <div class="card card-video">
+            <a href="https://weixin.qq.com/sph/Aanaol0p0F" target="_blank" class="card-cover" style="background-image: url('https://i.ibb.co/8nsM2sMW/Screen-Shot-2026-09-18-123203-639.jpg');">
+            </a>
+            <div class="card-body">
+                <h3><a href="https://weixin.qq.com/sph/Aanaol0p0F" target="_blank">世界顶尖科学家科学T大会——科学第一课：追求卓越，探索无限</a></h3>
+                <div class="meta">2024年10月 · 时长 0:30</div>
+                <span class="badge">活动略影</span>
+            </div>
+        </div>
+
+        <!-- 视频卡片 6 -->
+         <div class="card card-video">
+            <a href="https://weixin.qq.com/sph/ATSGBwO2Zd" target="_blank" class="card-cover" style="background-image: url('https://i.ibb.co/rGBPHSdb/Screen-Shot-2026-09-18-124509-872.jpg');">
+            </a>
+            <div class="card-body">
+                <h3><a href="https://weixin.qq.com/sph/ATSGBwO2Zd" target="_blank">郑泉水院士：探索未知，让每个学生都成为第一名</a></h3>
+                <div class="meta">2025年3月 · 时长 6:33</div>
+                <span class="badge">人物专访</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 4. 平面视觉设计（4个PDF，点击预览不能下载） -->
+    <!-- ============================================================ -->
+    <div class="section-title">
+        <span class="emoji">🎨</span> 平面视觉设计
+        <span class="count">4 个 PDF</span>
+    </div>
+    <div class="grid" id="designGrid">
+        <!-- 设计卡片 1 到 4，内容与之前完全相同，此处省略 -->
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 页脚 -->
+    <!-- ============================================================ -->
+    <div class="footer">
+        © 2025 崔畅（Cera Cui）· 品牌经理 · 用 ❤️ 和 VS Code 制作
+    </div>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- PDF 预览弹窗 -->
+<!-- ============================================================ -->
+<div class="pdf-modal" id="pdfModal" onclick="closePDFOutside(event)">
+    <div class="pdf-modal-content">
+        <div class="pdf-modal-header">
+            <span id="pdfModalTitle">PDF 预览</span>
+            <button class="pdf-modal-close" onclick="closePDF()">&times;</button>
+        </div>
+        <div class="pdf-modal-body" id="pdfModalBody">
+            <!-- PDF 会通过 JavaScript 动态嵌入 -->
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- JavaScript -->
+<!-- ============================================================ -->
+<script>
+    /**
+     * 打开 PDF 预览弹窗（不可下载）
+     */
+    function openPDF(pdfUrl, title) {
+        if (!pdfUrl || pdfUrl === '你的PDF文件1.pdf' || pdfUrl === '你的PDF文件2.pdf' ||
+            pdfUrl === '你的PDF文件3.pdf' || pdfUrl === '你的PDF文件4.pdf') {
+            alert('⚠️ 请先替换 PDF 文件链接！\n\n把代码中的 "你的PDF文件X.pdf" 替换成你实际上传的 PDF 文件地址。');
+            return;
+        }
+
+        const modal = document.getElementById('pdfModal');
+        const body = document.getElementById('pdfModalBody');
+        const titleEl = document.getElementById('pdfModalTitle');
+
+        titleEl.textContent = title || 'PDF 预览';
+        body.innerHTML = '';
+
+        const embed = document.createElement('embed');
+        embed.src = pdfUrl;
+        embed.type = 'application/pdf';
+        embed.style.width = '100%';
+        embed.style.height = '100%';
+        embed.style.minHeight = '500px';
+        embed.setAttribute('aria-label', 'PDF 预览');
+        embed.oncontextmenu = function(e) {
+            e.preventDefault();
+            return false;
+        };
+
+        body.appendChild(embed);
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closePDF() {
+        const modal = document.getElementById('pdfModal');
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+        document.getElementById('pdfModalBody').innerHTML = '';
+    }
+
+    function closePDFOutside(event) {
+        const modal = document.getElementById('pdfModal');
+        if (event.target === modal) {
+            closePDF();
+        }
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closePDF();
+        }
+    });
+</script>
+
+</body>
+</html>
